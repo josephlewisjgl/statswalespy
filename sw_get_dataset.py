@@ -13,10 +13,13 @@ def sw_get_dataset(id, print_progress=False):
     url = "http://open.statswales.gov.wales/en-gb/dataset/" + id
 
     # Extract first page and add dataframe to list ------------------------------
-    json_data = requests.get(url).json()
+    try:
+        json_data = requests.get(url).json()
+    except ValueError:
+        print("Dataset was not found. Check your dataset id for typos and that you have an internet connection.")
+        return None
 
     # Add this set of json_data to a list TODO: Error handle the no data
-
     json_list = [json_data['value']]
 
     # Loop through odata links to get all data --------------------------------
