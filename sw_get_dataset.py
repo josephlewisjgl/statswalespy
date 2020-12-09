@@ -6,13 +6,11 @@ This file contains the function to get this data using the OData feed from a kno
 """
 import requests
 import pandas as pd
-import check_internet_connection
-
 
 def sw_get_dataset(id, print_progress=False):
 
     # Check for internet connection and return none with an error message if there is no connection
-    if check_internet_connection.checkInternetRequests():
+    if checkInternetRequests():
         pass
     else:
         print("Internet connection not found.")
@@ -54,5 +52,3 @@ def sw_get_dataset(id, print_progress=False):
 
     # Return the dataframe
     return df
-
-sw_get_dataset("schs0235")
