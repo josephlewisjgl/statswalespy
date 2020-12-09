@@ -9,6 +9,7 @@ import pandas as pd
 
 
 def sw_get_dataset(id, print_progress=False):
+
     # Define dataset URL --------------------------------------------------------
     url = "http://open.statswales.gov.wales/en-gb/dataset/" + id
 
@@ -16,7 +17,8 @@ def sw_get_dataset(id, print_progress=False):
     try:
         json_data = requests.get(url).json()
     except ValueError:
-        print("Dataset was not found. Check your dataset id for typos and that you have an internet connection.")
+        print("Dataset was not found. Check your dataset id for typos. If your dataset id is correct, the API might "
+              "be unavailable.")
         return None
 
     # Add this set of json_data to a list TODO: Error handle the no data
