@@ -6,8 +6,14 @@ This file contains the function to get this data using the OData feed from a kno
 """
 import requests
 import pandas as pd
+from check_internet_connection import checkInternetRequests
 
 def sw_get_dataset(id, print_progress=False):
+
+    # Check id input is a string
+    if (type(id) is not str):
+        print("Please enter id as a string")
+        return None
 
     # Check for internet connection and return none with an error message if there is no connection
     if checkInternetRequests():
@@ -27,7 +33,7 @@ def sw_get_dataset(id, print_progress=False):
               "be unavailable.")
         return None
 
-    # Add this set of json_data to a list TODO: Error handle the no data
+    # Add this set of json_data to a list
     json_list = [json_data['value']]
 
     # Loop through odata links to get all data --------------------------------
