@@ -8,7 +8,7 @@ import requests
 import pandas as pd
 from check_internet_connection import checkInternetRequests
 
-def sw_get_dataset(id, print_progress=False):
+def statswales_get_dataset(id, print_progress=False):
 
     # Check id input is a string
     if (type(id) is not str):

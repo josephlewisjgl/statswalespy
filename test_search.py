@@ -1,6 +1,8 @@
 import unittest
 import pandas as pd
+import requests
 from statswales_search import statswales_search
+from check_internet_connection import checkInternetRequests
 
 class MyTestCase(unittest.TestCase):
     def test_returns_dataframe(self):
