@@ -6,6 +6,8 @@ This file contains the function to get metadata associated with a dataset using 
 """
 import requests
 import pandas as pd
+import logging
+
 from check_internet_connection import checkInternetRequests
 
 def statswales_get_metadata(id) :
@@ -13,7 +15,7 @@ def statswales_get_metadata(id) :
     if checkInternetRequests():
         pass
     else:
-        print("Internet connection not found.")
+        logging.warning("Internet connection not found.")
         return None
 
     url = "http://open.statswales.gov.wales/en-gb/discover/metadata?$filter=Dataset%20eq%20%27" + id.lower() + "%27"

@@ -6,6 +6,8 @@ This file contains the function to search StatsWales tables using key strings.
 """
 import requests
 import pandas as pd
+import logging
+
 from check_internet_connection import checkInternetRequests
 
 def statswales_search(search_text):
@@ -14,14 +16,14 @@ def statswales_search(search_text):
     if type(search_text) == list:
         for item in search_text:
             if type(item) != str:
-                print("Please enter id as a string")
+                logging.warning("Please enter id as a string")
                 return None
             else:
                 pass
 
     # If item is not a list, check that it's a strings
     if type(search_text) != str:
-        print("Please enter id as a string")
+        logging.warning("Please enter id as a string")
         return None
     else:
         pass
@@ -30,7 +32,7 @@ def statswales_search(search_text):
     if checkInternetRequests():
         pass
     else:
-        print("Internet connection not found.")
+        logging.warning("Internet connection not found.")
         return None
 
     url = "http://open.statswales.gov.wales/en-gb/discover/metadata?$filter=Tag_ENG%20eq%20%27Title%27"

@@ -6,6 +6,8 @@ This file contains the function to get this data using the OData feed from a kno
 """
 import requests
 import pandas as pd
+import logging
+
 from check_internet_connection import checkInternetRequests
 
 def statswales_get_dataset(id, print_progress=False):
@@ -19,7 +21,7 @@ def statswales_get_dataset(id, print_progress=False):
     if checkInternetRequests():
         pass
     else:
-        print("Internet connection not found.")
+        logging.warning("Internet connection not found.")
         return None
 
     # Define dataset URL --------------------------------------------------------
@@ -29,7 +31,7 @@ def statswales_get_dataset(id, print_progress=False):
     try:
         json_data = requests.get(url).json()
     except ValueError:
-        print("Dataset was not found. Check your dataset id for typos. If your dataset id is correct, the API might "
+        logging.warning("Dataset was not found. Check your dataset id for typos. If your dataset id is correct, the API might "
               "be unavailable.")
         return None
 
