@@ -1,16 +1,25 @@
-from distutils.core import setup
+import os.path
+from setuptools import setup
+
+# The directory containing this file
+HERE = os.path.abspath(os.path.dirname(__file__))
+
+# The text of the README file
+with open(os.path.join(HERE, "README.md")) as fid:
+    README = fid.read()
 
 
 setup(
   name = 'statswalespy',
   packages = ['statswalespy'],
-  version = '0.1',
-  license='',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
-  description = 'The statswalespy package can be used to retrieve data from the StatsWales API into a Pandas dataframe',   # Give a short description about your library
-  author = 'Joe Lewis',
+  version = '0.1.0',
+  license='MIT',
+  description = 'A Python package for downloading data and metadata from the StatsWales API.',
+  author = 'Joe Lewis, Jamie Ralph',
   author_email = 'josephgeorgelewis2000@gmail.com',
+  long_description=README,
+  long_description_content_type="text/markdown",
   url = 'https://github.com/josephlewisjgl/statswalespy',
-  download_url = 'https://github.com/josephlewisjgl/statswalespy/archive/refs/tags/v0.1-beta.tar.gz',    # I explain this later on
   keywords = ['Wales', 'statswales', 'Welsh'],
   install_requires=[
           'logging',
@@ -21,7 +30,7 @@ setup(
     'Development Status :: 4 - Beta',
     'Intended Audience :: Developers',
     'Topic :: Software Development :: Build Tools',
-    'License :: OSI Approved ::  License',   # Again, pick a license
+    'License :: OSI Approved :: MIT License',
     'Programming Language :: Python :: 3',
     'Programming Language :: Python :: 3.4',
     'Programming Language :: Python :: 3.5',

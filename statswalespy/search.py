@@ -1,14 +1,10 @@
 """
-
-StatsWalesPy will be a package that takes data from StatsWales into Python.
-This file contains the function to search StatsWales tables using key strings.
-
+Function for searching StatsWales tables using key strings.
 """
 import requests
 import pandas as pd
 import logging
-
-from check_internet_connection import checkInternetRequests
+from statswalespy.check_internet_connection import checkInternetRequests
 
 def statswales_search(search_text):
 

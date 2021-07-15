@@ -1,6 +1,8 @@
-# Statwalespy
+# statswalespy
+> Easily download data and metadata from the StatsWales API
 
-statswalespy is a package for downloading datasets and their associated metadata from StatsWales. This functionality is limited to datasets that are available through the OData feed. You can check this by navigating to your desired dataset, scrolling to the bottom, and checking that the “Dataset” link is available under the Open Data tab.
+statswalespy is a Python package for interacting with the [StatsWales](https://statswales.gov.wales/Catalogue) API,
+including functions for downloading datasets, downloading metadata, and searching for datasets using key words.
 
 ## Installation
 
@@ -10,56 +12,35 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install statswa
 pip install statswalespy
 ```
 
-## Usage
-Import statswalespy
-```python
-import statswalespy
+## How to download data and metadata
+
+The code below extracts data about [aircraft movement at Cardiff
+airport](https://statswales.gov.wales/Catalogue/Transport/Air/aircraftmovementsatcardiffairport-by-movementtype-year)
+and the associated metadata.
+
+``` python
+from statswalespy.download_data import statswales_get_dataset, statswales_get_metadata
+
+metadata = statswales_get_metadata("tran0003")
+
+data = statswales_get_dataset("tran0003")
+
+# Print out the data
+print(str(data))
 ```
 
-Return a Pandas DataFrame with data from the StatsWales cube : 'KS4 indicators by year and SEN (Special educational need) provision'.
+## How to search for datasets
 
-```python 
-df = statswalespy.statswales_get_dataset('SCH0192')
-print(str(df))
+You can also search for datasets based on key terms. For example, data on farming or agriculture can be searched using this code:
 
-#             Data Measure_Code  ... Year_ItemName_ENG Year_SortOrder
-#0       82.310659           L2  ...              2012              8
-#1      351.578548           CP  ...              2017             13
-#2    28611.000000       Cohort  ...              2010              6
-#3       75.376921          SCI  ...              2011              7
-#4       73.160672          ENG  ...              2010              6
-#5       73.243233          ENG  ...              2012              8
-```
-Return all metadata associated with the same cube.
-```python
-metadata = statswalespy.statswales_get_metadata('SCH0192')
-print(str(metadata))
+``` python
+from statswalespy.search import statswales_search
 
-#     Dataset  ...                     Timestamp
-#0   schs0192  ...  2020-01-30T10:31:42.9403647Z
-#1   schs0192  ...  2020-01-30T10:31:42.9403647Z
-#2   schs0192  ...  2020-01-30T10:31:42.9403647Z
-#3   schs0192  ...  2020-01-30T10:31:42.9403647Z
-#4   schs0192  ...  2020-01-30T10:31:42.9403647Z
-#5   schs0192  ...  2020-01-30T10:31:42.9403647Z
-```
-Return a DataFrame containing all the cube titles and references that match the keyword school.
-```python
-search = statswalespy.statswales_search('school')
-print(str(search))
+farming_datasets = statswales_search(["farm*", "agri*"])
 
-#       Dataset                                    Description_ENG
-#251   schs0203               Pupils (FTE) by school and age group
-#253   schs0206            Pupils (number) by school and age group
-#258   schs0213         Support staff (FTE) by school and category
-#261   schs0216      Support staff (number) by school and category
-#264   schs0219              Teachers (FTE) by school and category
-#266   schs0222           Teachers (number) by school and category
-
+# Print out results
+print(str(farming_datasets))
 ```
 
 ## Contributing
 Any suggestions for changes or extra work to make the package better are welcome.
-
-## License
-add

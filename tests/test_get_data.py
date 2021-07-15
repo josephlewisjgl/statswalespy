@@ -1,12 +1,11 @@
 import unittest
 import pandas as pd
 import requests
-from statswales_get_dataset import statswales_get_dataset
-from check_internet_connection import checkInternetRequests
+from statswalespy.download_data import statswales_get_dataset
 
 class MyTestCase(unittest.TestCase):
     def test_returns_dataframe_obj(self):
-        self.assertIsInstance(statswales_get_dataset("schs0235"), pd.DataFrame, "Failed")
+        self.assertTrue(isinstance(statswales_get_dataset("schs0235"), pd.DataFrame) or statswales_get_dataset("schs0235") is None, "Failed")
 
     def test_invalid_id_returns_null(self):
         self.assertEqual(statswales_get_dataset("XXXX"), None, "Failed")
