@@ -22,7 +22,6 @@ setup(
   url = 'https://github.com/josephlewisjgl/statswalespy',
   keywords = ['Wales', 'statswales', 'Welsh'],
   install_requires=[
-          'logging',
           'pandas',
           'requests'
       ],
