@@ -15,6 +15,10 @@ def statswales_get_dataset(id, print_progress=False):
         print("Please enter one id value.")
         return None
 
+    # Check id input is not ''
+    if(len(id) < 1):
+        logging.warning("The dataset id entered is empty. Please enter a full dataset id.")
+        return None
 
     # Check id input is a string
     if (type(id) is not str):
@@ -96,6 +100,10 @@ def statswales_get_metadata(id) :
         print("Please enter one id value.")
         return None
 
+    # Check id input is not ''
+    if (len(id) < 1):
+        logging.warning("The dataset id entered is empty. Please enter a full dataset id.")
+        return None
 
     # Check id input is a string
     if (type(id) is not str):
