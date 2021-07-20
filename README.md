@@ -1,6 +1,8 @@
 # statswalespy
 > Easily download data and metadata from the StatsWales API
 
+![PyPI](https://img.shields.io/pypi/v/statswalespy)
+
 statswalespy is a Python package for interacting with the [StatsWales](https://statswales.gov.wales/Catalogue) API,
 including functions for downloading datasets, downloading metadata, and searching for datasets using key words.
 
