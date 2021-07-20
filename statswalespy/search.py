@@ -12,14 +12,14 @@ def statswales_search(search_text):
     if type(search_text) == list:
         for item in search_text:
             if type(item) != str:
-                logging.warning("Please enter id as a string")
+                logging.warning("Please enter search term as a string or list of strings.")
                 return None
             else:
                 pass
 
     # If item is not a list, check that it's a strings
-    if type(search_text) != str:
-        logging.warning("Please enter id as a string")
+    if type(search_text) != list and type(search_text) != str:
+        logging.warning("Please enter search term as a string or list of strings.")
         return None
     else:
         pass

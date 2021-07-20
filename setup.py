@@ -12,7 +12,7 @@ with open(os.path.join(HERE, "README.md")) as fid:
 setup(
   name = 'statswalespy',
   packages = ['statswalespy'],
-  version = '0.1.1',
+  version = '0.1.2',
   license='MIT',
   description = 'A Python package for downloading data and metadata from the StatsWales API.',
   author = 'Joe Lewis, Jamie Ralph',
