@@ -15,15 +15,16 @@ def statswales_get_dataset(id, print_progress=False):
         print("Please enter one id value.")
         return None
 
+    # Check id input is a string
+    if (type(id) is not str):
+        print("Please enter id as a string")
+        return None
+
     # Check id input is not ''
     if(len(id) < 1):
         logging.warning("The dataset id entered is empty. Please enter a full dataset id.")
         return None
 
-    # Check id input is a string
-    if (type(id) is not str):
-        print("Please enter id as a string")
-        return None
 
     # Check for internet connection and return none with an error message if there is no connection
     if checkInternetRequests():
@@ -84,6 +85,11 @@ def statswales_get_dataset(id, print_progress=False):
     json_flat = [l for json in json_list for l in json]
     df = pd.DataFrame(json_flat)
 
+    # Remove the RowKeys column and check for duplicates
+    if "RowKey" in df.columns:
+        df = df.drop(['RowKey'], axis = 1)
+        df = df.drop_duplicates()
+
     print("Data extracted with " + str(len(df)) + " rows, and " + str(len(df.columns)) + " columns.")
 
     # Return the dataframe
@@ -100,14 +106,14 @@ def statswales_get_metadata(id) :
         print("Please enter one id value.")
         return None
 
-    # Check id input is not ''
-    if (len(id) < 1):
-        logging.warning("The dataset id entered is empty. Please enter a full dataset id.")
-        return None
-
     # Check id input is a string
     if (type(id) is not str):
         print("Please enter id as a string")
+        return None
+
+    # Check id input is not ''
+    if (len(id) < 1):
+        logging.warning("The dataset id entered is empty. Please enter a full dataset id.")
         return None
 
     # Check internet connection
